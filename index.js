@@ -19,8 +19,29 @@ function isShowAll(input) {
   }
 }
 
+function getTime(activity) {
+  const TIME_LENGTH = 5
+  const timePosition = activity.indexOf('>')
+  const activityDetail = {
+    detail: '',
+    time: ''
+  }
+
+  if (timePosition >= 0) {
+    activityDetail.time = activity.slice(timePosition + 1, timePosition + TIME_LENGTH)
+  }
+
+  if (timePosition === 0) {
+    activityDetail.detail = activity.slice(timePosition + TIME_LENGTH, activity.length)
+  } else {
+    activityDetail.detail = activity.slice(0, timePosition)
+  }
+
+  return activityDetail
+}
+
 function saveData(dataToSave) {
-  activities.push(dataToSave)
+  activities.push(getTime(dataToSave))
 }
 
 function showData() {
