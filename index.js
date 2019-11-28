@@ -4,7 +4,6 @@ stdin.addListener('data', text => {
   console.log()
 
   isShowAll(userInput)
-  // stdin.pause()
 })
 
 const SHOW_DATA = 'tampilkan'
@@ -20,7 +19,7 @@ function isShowAll(input) {
 }
 
 function getTime(activity) {
-  const TIME_LENGTH = 5
+  const TIME_LENGTH = 6
   const timePosition = activity.indexOf('>')
   const activityDetail = {
     detail: '',
@@ -32,9 +31,9 @@ function getTime(activity) {
   }
 
   if (timePosition === 0) {
-    activityDetail.detail = activity.slice(timePosition + TIME_LENGTH, activity.length)
+    activityDetail.detail = activity.slice(timePosition + TIME_LENGTH, activity.length).trim()
   } else {
-    activityDetail.detail = activity.slice(0, timePosition)
+    activityDetail.detail = activity.slice(0, timePosition).trim()
   }
 
   return activityDetail
@@ -47,9 +46,15 @@ function saveData(dataToSave) {
 function showData() {
   if (Array.isArray(activities) && activities.length) {
     for (let i = 0; i < activities.length; i++) {
-      console.log(activities[i])
+      if (activities[i].detail && activities[i].time) {
+        console.log('Aktivitas:', activities[i].detail, '||', 'Waktu:', activities[i].time)
+      } else {
+        console.log('Wrong Input')
+      }
     }
   } else {
     console.log('Aktivitas Kosong')
   }
+
+  stdin.pause()
 }
