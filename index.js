@@ -1,6 +1,7 @@
 const stdin = process.openStdin()
 stdin.addListener('data', text => {
   userInput = text.toString().trim()
+  console.log()
 
   isShowAll(userInput)
   // stdin.pause()
@@ -15,7 +16,6 @@ function isShowAll(input) {
     showData()
   } else {
     saveData(input)
-    console.log()
   }
 }
 
