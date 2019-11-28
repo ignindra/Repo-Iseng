@@ -24,9 +24,11 @@ function saveData(dataToSave) {
 }
 
 function showData() {
-  if (Array.isArray(activities)) {
+  if (Array.isArray(activities) && activities.length) {
     for (let i = 0; i < activities.length; i++) {
       console.log(activities[i])
     }
+  } else {
+    console.log('Aktivitas Kosong')
   }
 }
